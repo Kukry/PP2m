@@ -1,6 +1,9 @@
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
+
 public class App {
     public static void main(String[] args) {
         ApplicationContext applicationContext =
@@ -8,5 +11,10 @@ public class App {
         HelloWorld bean =
                 (HelloWorld) applicationContext.getBean("helloworld");
         System.out.println(bean.getMessage());
+        HelloWorld bean2 = applicationContext.getBean("helloworld", HelloWorld.class);
+        System.out.println("Переменные ссылаются на один и тот же объект? " + (bean == bean2));
+        Cat cat1 = applicationContext.getBean("cat", Cat.class);
+        Cat cat2 = applicationContext.getBean("cat", Cat.class);
+        System.out.println("Переменные ссылаются на один и тот же объект? " + (cat1 == cat2));
     }
 }
